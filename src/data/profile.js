@@ -1,78 +1,262 @@
 export const profile = {
   name: 'Prashant Yadav',
-  title: 'Creative Web Developer',
-  headline: 'Crafting Modern Websites & High-Performance Digital Experiences',
+  greeting: "HI, I'M PRASHANT.",
+  role: 'SOFTWARE DEVELOPER',
+  subrole: 'FULL-STACK WEB DEVELOPER',
+  tagline: 'Turning Ideas Into Exceptional Digital Experiences.',
   email: 'py9162840@gmail.com',
   phone: '+91 9305842074',
   whatsapp: 'https://wa.me/919305842074',
   github: 'https://github.com/Prashant100803',
   linkedin: 'https://www.linkedin.com/in/prashant-yadav-b8702b411',
   photo: '/profile.jpg',
-  resume: '', // Can be linked to /resume.pdf when uploaded
+  resume: '',
+  aboutHeading: 'MORE THAN CODE. I BUILD EXPERIENCES.',
   about:
-    'I am a creative web developer with a passion for designing and building modern, responsive, and engaging web applications. I combine clean frontend architecture with smooth interactivity and intuitive UI/UX to help clients, businesses, and startups transform ideas into impactful digital products.',
-  status: 'Available for freelance projects & full-time roles',
+    'I am a passionate software developer and full-stack web developer who blends precision engineering with cinematic 3D interaction. I specialize in building modern, responsive, and performance-driven digital platforms that solve real business problems and leave a lasting impression.',
+  status: 'Open to Freelance Projects & Full-Time Opportunities',
   location: 'Mumbai, India',
-  interests: [
-    'Modern Web Development',
-    'Interactive 3D & Creative UI',
-    'Responsive & Mobile-First Design',
-    'Performance Optimization',
-    'Full-Stack Architecture',
-  ],
 }
 
-// 3D Scene Skills (retained for WebGL floating animation)
-export const skills = [
-  { n: 'HTML5', c: '#e34f26', k: 'dod' },
-  { n: 'CSS3', c: '#2965f1', k: 'oct' },
-  { n: 'JavaScript', c: '#f7df1e', k: 'box' },
-  { n: 'React.js', c: '#22d3ee', k: 'ico' },
-  { n: 'Node.js', c: '#7ac143', k: 'cone' },
-  { n: 'Git', c: '#f05032', k: 'knot' },
-  { n: 'GitHub', c: '#a78bfa', k: 'torus' },
-]
-
-// Categorized Skills for the readable 2D skills grid (Accessible without WebGL)
+// Interactive categorized skills including new AI/ML category
 export const skillsCategories = [
   {
-    category: 'Frontend Development',
-    description: 'Building accessible, fast, and responsive user interfaces with modern web standards.',
+    category: 'Programming',
+    description: 'Foundational languages, algorithmic problem solving, and design patterns.',
+    color: '#EF4444',
     items: [
-      { name: 'HTML5', level: 'Semantic, SEO, & A11y', tag: 'Core' },
-      { name: 'CSS3 / Modern CSS', level: 'Flexbox, Grid, Animations', tag: 'Styling' },
-      { name: 'JavaScript (ES6+)', level: 'Async, DOM, Modern Syntax', tag: 'Logic' },
-      { name: 'React.js', level: 'Hooks, Component Architecture, State', tag: 'Framework' },
-      { name: 'Tailwind CSS', level: 'Utility-first, Responsive Systems', tag: 'Styling' },
+      { name: 'JavaScript', level: 'ES6+, Async, V8 Engine', tag: 'Core' },
+      { name: 'Python', level: 'Scripting, Automation, AI/ML', tag: 'Language' },
+      { name: 'DSA', level: 'Arrays, Trees, Graphs, Complexity', tag: 'Logic' },
+      { name: 'OOP', level: 'Inheritance, Encapsulation, Polymorphism', tag: 'Paradigm' },
     ],
   },
   {
-    category: 'Backend Development',
-    description: 'Creating robust server-side logic, routing, and clean RESTful API integrations.',
+    category: 'Frontend',
+    description: 'Modern, reactive user interfaces, component systems, and responsive design.',
+    color: '#DC2626',
     items: [
-      { name: 'Node.js', level: 'Server Runtime, Event-driven architecture', tag: 'Runtime' },
-      { name: 'Express.js', level: 'REST APIs, Middleware, Routing', tag: 'Backend' },
-      { name: 'RESTful APIs', level: 'CRUD Operations, JSON, Integration', tag: 'API' },
+      { name: 'HTML5', level: 'Semantic, Accessible, SEO-friendly', tag: 'Markup' },
+      { name: 'CSS3', level: 'Flexbox, Grid, Custom Keyframes', tag: 'Styling' },
+      { name: 'React.js', level: 'Hooks, Custom Context, State Machines', tag: 'Framework' },
+      { name: 'Next.js', level: 'SSR, SSG, App Router, Hybrid Rendering', tag: 'Meta-Framework' },
+      { name: 'Tailwind CSS', level: 'Design Systems, JIT Engine, Responsive', tag: 'Styling' },
     ],
   },
   {
-    category: 'Tools & Workflow',
-    description: 'Industry-standard developer tooling for version control, builds, and efficiency.',
+    category: 'Backend',
+    description: 'Scalable server architectures, secure routing, and auth protocols.',
+    color: '#B91C1C',
     items: [
-      { name: 'Git', level: 'Branching, Merging, Version Control', tag: 'VCS' },
-      { name: 'GitHub', level: 'Collaboration, CI/CD Workflows, Repos', tag: 'Platform' },
-      { name: 'Vite', level: 'Modern Bundling, Fast HMR, Build Optimization', tag: 'Build' },
-      { name: 'VS Code', level: 'Extensions, Debugging, Custom Tooling', tag: 'Editor' },
+      { name: 'Node.js', level: 'Event-driven, Non-blocking I/O', tag: 'Runtime' },
+      { name: 'Express.js', level: 'REST APIs, Middleware Pipelines', tag: 'Backend' },
+      { name: 'REST APIs', level: 'API Contracts, CRUD, Webhooks', tag: 'Protocol' },
+      { name: 'JWT', level: 'Secure Authentication & Session Tokens', tag: 'Security' },
     ],
   },
   {
-    category: 'Other Technologies',
-    description: 'Complementary design, graphics, and performance disciplines.',
+    category: 'Databases',
+    description: 'Relational data modeling, indexing, and high-integrity queries.',
+    color: '#991B1B',
     items: [
-      { name: 'Responsive Design', level: 'Mobile-first, Cross-device Fluidity', tag: 'UX' },
-      { name: 'WebGL & Three.js', level: '3D Scenes, Shaders, Creative Web', tag: 'Graphics' },
-      { name: 'Performance & SEO', level: 'Lighthouse Audits, Lazy-loading, Fast LCP', tag: 'Speed' },
+      { name: 'MySQL', level: 'Relational Schema, Foreign Keys, Joins', tag: 'RDBMS' },
+      { name: 'PostgreSQL', level: 'Complex Queries, JSONB, Performance', tag: 'SQL' },
     ],
+  },
+  {
+    category: 'AI / Machine Learning',
+    description: 'Intelligent systems, data analytics pipelines, and LLM integrations.',
+    color: '#EF4444',
+    items: [
+      { name: 'Machine Learning Fundamentals', level: 'Supervised, Unsupervised, Evaluation', tag: 'Core AI' },
+      { name: 'Python for AI/ML', level: 'Data Modeling & Inference Pipelines', tag: 'Scripting' },
+      { name: 'NumPy', level: 'Vectorized Operations & Multi-dim Arrays', tag: 'Compute' },
+      { name: 'Pandas', level: 'Data Wrangling, Cleaning, & EDA', tag: 'Data' },
+      { name: 'Scikit-learn', level: 'Classifiers, Regression, Preprocessing', tag: 'ML Lib' },
+      { name: 'AI API Integration', level: 'OpenAI, Gemini API, Vision Models', tag: 'Integration' },
+      { name: 'Prompt Engineering', level: 'Few-shot, Context Framing, Reasoning', tag: 'Prompting' },
+      { name: 'AI-Assisted Development', level: 'Autonomous Agents, Accelerated Workflows', tag: 'Productivity' },
+    ],
+  },
+  {
+    category: 'Development Tools',
+    description: 'Production workflows, cloud platforms, and developer ergonomics.',
+    color: '#DC2626',
+    items: [
+      { name: 'Git', level: 'Branching Strategies, Interactive Rebase', tag: 'VCS' },
+      { name: 'GitHub', level: 'Actions CI/CD, PR Workflows, Collaboration', tag: 'DevOps' },
+      { name: 'VS Code', level: 'Advanced Debugging, Custom Environments', tag: 'IDE' },
+      { name: 'Linux', level: 'Bash Scripting, Permissions, CLI Tooling', tag: 'OS' },
+      { name: 'Docker', level: 'Containerization, Multi-stage Builds', tag: 'DevOps' },
+      { name: 'Vercel', level: 'Edge Deployments, Serverless Functions', tag: 'Cloud' },
+      { name: 'AWS Basics', level: 'S3 Storage, EC2 Instances, CloudFront', tag: 'Cloud' },
+    ],
+  },
+]
+
+// 3D Interactive Floating Skills (for Three.js Scene with Crimson materials)
+export const skills3D = [
+  { n: 'React.js', c: '#EF4444', k: 'ico' },
+  { n: 'Node.js', c: '#DC2626', k: 'cone' },
+  { n: 'Python', c: '#F87171', k: 'box' },
+  { n: 'Next.js', c: '#B91C1C', k: 'knot' },
+  { n: 'AI/ML', c: '#EF4444', k: 'torus' },
+  { n: 'JavaScript', c: '#DC2626', k: 'dod' },
+  { n: 'Tailwind', c: '#991B1B', k: 'oct' },
+  { n: 'PostgreSQL', c: '#EF4444', k: 'box' },
+]
+
+// Services Offered
+export const services = [
+  {
+    id: 1,
+    title: 'Full-Stack Web Development',
+    description:
+      'End-to-end development of robust web applications using React, Next.js, and Node.js. Fast, secure, and architected for long-term growth.',
+    deliverables: ['Custom Web Applications', 'RESTful API Engineering', 'Database Architecture', 'Secure Auth & Payments'],
+    icon: 'code',
+  },
+  {
+    id: 2,
+    title: 'Interactive 3D & Creative Frontend',
+    description:
+      'Immersive digital experiences featuring Three.js, React Three Fiber, WebGL, and custom GSAP animations that captivate clients and elevate brands.',
+    deliverables: ['Cinematic 3D Scenes', 'Smooth Scroll Choreography', 'Micro-Interactions', 'High-Converting Landing Pages'],
+    icon: 'cube',
+  },
+  {
+    id: 3,
+    title: 'AI Integration & Intelligent Apps',
+    description:
+      'Infusing artificial intelligence into web applications: LLM API integrations, automated smart workflows, computer vision, and prompt-engineered tools.',
+    deliverables: ['AI API / LLM Integrations', 'Smart Note-taking & Summarization', 'Computer Vision Prototypes', 'Data Analysis with Python'],
+    icon: 'sparkles',
+  },
+  {
+    id: 4,
+    title: 'Performance, SEO & Speed Optimization',
+    description:
+      'Auditing and transforming slow websites into lightning-fast, 95+ Lighthouse score platforms that rank higher on search engines and convert visitors.',
+    deliverables: ['Code-Splitting & Lazy-Loading', 'Core Web Vitals Optimization', 'SEO Architecture', 'Cross-Device Responsiveness'],
+    icon: 'rocket',
+  },
+]
+
+// Preserved Projects with Structured Case Studies
+export const projects = [
+  {
+    id: 0,
+    name: 'Gravion Consultancy – Real Estate Platform',
+    d: 'Commercial real estate and property consultancy platform with interactive property showcases and direct client inquiry pipelines.',
+    stack: ['React.js', 'Tailwind CSS', 'Framer Motion'],
+    category: 'Commercial Platform',
+    live: '',
+    github: 'https://github.com/Prashant100803',
+    caseStudy: {
+      problem: 'High-value property buyers needed a fast, interactive way to inspect commercial listings with immediate inquiry channels.',
+      solution: 'Engineered a modern web platform featuring categorized property filters, high-res image optimization, and one-tap WhatsApp / call triggers.',
+      features: [
+        'Responsive commercial listings with fast asset loading',
+        'Direct inquiry funnel with pre-filled property specs',
+        'Mobile-first responsive architecture tested across smartphones',
+      ],
+      outcomes: 'Elevated client brand authority and streamlined buyer lead capture with zero friction.',
+    },
+  },
+  {
+    id: 1,
+    name: 'AI Notes Making & Summary App',
+    d: 'Intelligent productivity application that automatically converts complex study materials and articles into structured key takeaways.',
+    stack: ['React.js', 'Node.js', 'AI API', 'Tailwind CSS'],
+    category: 'AI Application',
+    live: '',
+    github: 'https://github.com/Prashant100803',
+    caseStudy: {
+      problem: 'Students and self-learners spend excessive hours manually summarizing lengthy texts, causing fatigue and inconsistent retention.',
+      solution: 'Built an automated AI notes engine that parses raw text into bullet summaries, key terms, and exportable study outlines.',
+      features: [
+        'Instant natural language summarization with AI integration',
+        'Clean reading interface designed for cognitive clarity',
+        'Exportable study sheets and organized categorized storage',
+      ],
+      outcomes: 'Saved users valuable study hours while improving material comprehension.',
+    },
+  },
+  {
+    id: 2,
+    name: 'WildInsight – AI Animal Detection',
+    d: 'Computer-vision web prototype identifying and classifying animal species from uploaded field images with descriptive context.',
+    stack: ['Python', 'AI/ML', 'JavaScript', 'HTML5/CSS3'],
+    category: 'Computer Vision',
+    live: '',
+    github: 'https://github.com/Prashant100803',
+    caseStudy: {
+      problem: 'Manual wildlife classification in research and educational environments is slow and requires specialized taxonomy knowledge.',
+      solution: 'Developed an accessible web interface linked to machine learning inference models for rapid species classification and habitat overview.',
+      features: [
+        'Rapid image processing with confidence scoring',
+        'Species profile cards with ecological context and status',
+        'Responsive gallery interface with drag-and-drop uploads',
+      ],
+      outcomes: 'Demonstrated seamless coupling of backend ML inference with an intuitive web UI.',
+    },
+  },
+  {
+    id: 3,
+    name: 'Notes Share – Collaborative Study Platform',
+    d: 'Resource-sharing academic repository enabling university peers to upload, organize, and discover verified study notes and question banks.',
+    stack: ['React.js', 'Node.js', 'Express.js', 'Tailwind CSS'],
+    category: 'Full-Stack Platform',
+    live: '',
+    github: 'https://github.com/Prashant100803',
+    caseStudy: {
+      problem: 'Crucial study documents are lost in fragmented chat channels, leading to unorganized exam preparation.',
+      solution: 'Created a centralized repository with course-based indexing, fast search, and peer document access.',
+      features: [
+        'Structured semester and subject document categorization',
+        'Fast file search and preview generation',
+        'Fully responsive mobile study experience',
+      ],
+      outcomes: 'Organized educational assets into an accessible central hub.',
+    },
+  },
+  {
+    id: 4,
+    name: 'MTAP – Mobile Repair & Service Portal',
+    d: 'Modern service booking and diagnostic website for a tech repair enterprise, featuring transparent pricing and direct scheduling.',
+    stack: ['HTML5', 'CSS3', 'JavaScript', 'Responsive UI'],
+    category: 'Commercial Business',
+    live: '',
+    github: 'https://github.com/Prashant100803',
+    caseStudy: {
+      problem: 'A local hardware repair shop struggled with lost inquiries and lack of transparent device service pricing.',
+      solution: 'Crafted a sleek repair portal with transparent price breakdown by device model and instant WhatsApp booking.',
+      features: [
+        'Interactive device and issue selector',
+        'Transparent estimated repair costs and turnaround time',
+        'Direct inquiry button connecting to technician instantly',
+      ],
+      outcomes: 'Boosted customer confidence and automated diagnostic walk-in inquiries.',
+    },
+  },
+  {
+    id: 5,
+    name: 'Event Management & Ticketing Interface',
+    d: 'Dynamic event discovery and booking portal where users explore upcoming tech conferences, hackathons, and campus summits.',
+    stack: ['HTML5', 'Tailwind CSS', 'JavaScript'],
+    category: 'Interactive Web UI',
+    live: '',
+    github: 'https://github.com/Prashant100803',
+    caseStudy: {
+      problem: 'Attendees often abandon complex ticket booking flows that lack clear timeline schedules and speaker clarity.',
+      solution: 'Built a vibrant event schedule interface with speaker spotlights, date filtering, and streamlined RSVP confirmations.',
+      features: [
+        'Timeline-based session and agenda navigation',
+        'Dynamic speaker modal profiles and bios',
+        'Instant confirmation receipt generator',
+      ],
+      outcomes: 'Achieved high prototype engagement and intuitive navigation flow.',
+    },
   },
 ]
 
@@ -91,124 +275,5 @@ export const education = [
     t: 'Maharashtra State Board',
     d: 'Secondary School Certificate (SSC) with distinction',
     period: 'Schooling',
-  },
-]
-
-// Real projects with structured case-study content
-export const projects = [
-  {
-    id: 0,
-    name: 'Gravion Consultancy – Real Estate Platform',
-    d: 'A comprehensive commercial real estate and property consultancy web platform with interactive property listings and client inquiry workflows.',
-    stack: ['React.js', 'Tailwind CSS', 'Framer Motion'],
-    category: 'Client Web Platform',
-    live: '', // Only rendered when valid
-    github: 'https://github.com/Prashant100803',
-    caseStudy: {
-      problem: 'Property buyers and investors needed an intuitive, fast way to browse high-value commercial properties with seamless inquiry channels and fast image loading.',
-      solution: 'Engineered a modern, responsive web application featuring custom filtering, clear property specifications, and direct WhatsApp / call CTA integration.',
-      features: [
-        'Responsive property showcase grid with high-resolution media handling',
-        'Direct inquiry integration connecting prospective clients immediately',
-        'Optimized mobile navigation for clients on smartphones and tablets',
-        'Clean brand identity with smooth micro-interactions',
-      ],
-      outcomes: 'Delivered a professional digital presence that significantly improved visitor engagement and streamlined buyer inquiries.',
-    },
-  },
-  {
-    id: 1,
-    name: 'AI Notes Making & Summary App',
-    d: 'An intelligent productivity application that transforms lengthy study material and articles into concise, structured study notes with AI.',
-    stack: ['React.js', 'Node.js', 'AI API', 'Tailwind CSS'],
-    category: 'AI Web Application',
-    live: '',
-    github: 'https://github.com/Prashant100803',
-    caseStudy: {
-      problem: 'Students and self-learners spend excessive hours manually summarizing long study materials, leading to cognitive overload and fragmented notes.',
-      solution: 'Created an automated notes generator that processes raw text, organizes it into structured bullet points, key takeaways, and flashcards.',
-      features: [
-        'Fast natural language text summarization and bullet extraction',
-        'Categorized note storage with exportable Markdown and PDF support',
-        'Clean reading interface with dark/light visual comfort',
-      ],
-      outcomes: 'Streamlined note-taking workflow, saving students measurable hours in review preparation.',
-    },
-  },
-  {
-    id: 2,
-    name: 'WildInsight – AI Animal Detection',
-    d: 'An intelligent computer-vision web prototype designed to identify and classify animal species from uploaded images in real time.',
-    stack: ['Python', 'AI/ML', 'JavaScript', 'HTML5/CSS3'],
-    category: 'Computer Vision Prototype',
-    live: '',
-    github: 'https://github.com/Prashant100803',
-    caseStudy: {
-      problem: 'Manual identification of wildlife species in field research and educational environments is slow and requires specialized taxonomy knowledge.',
-      solution: 'Built an accessible web interface backed by computer vision models to quickly classify animal species and present descriptive biological context.',
-      features: [
-        'Instant image upload with confidence score and species classification',
-        'Detailed species profile cards with habitat and conservation status',
-        'Responsive image viewer with bounding-box highlighting',
-      ],
-      outcomes: 'Demonstrated successful integration of machine learning inference models with an accessible frontend interface.',
-    },
-  },
-  {
-    id: 3,
-    name: 'Notes Share – Collaborative Study Platform',
-    d: 'A community resource-sharing platform allowing students to upload, organize, and discover verified academic notes and past exam papers.',
-    stack: ['React.js', 'Node.js', 'Express.js', 'CSS Modules'],
-    category: 'Full-Stack Platform',
-    live: '',
-    github: 'https://github.com/Prashant100803',
-    caseStudy: {
-      problem: 'Academic resources are often scattered across disparate chat groups, leading to lost materials and outdated exam prep documents.',
-      solution: 'Engineered a centralized sharing repository with subject categorization, searchable tags, and peer-to-peer download capability.',
-      features: [
-        'Course and semester-based document indexing and fast search',
-        'Secure document upload and thumbnail preview generation',
-        'Responsive layout optimized for mobile study on the go',
-      ],
-      outcomes: 'Created an organized digital library serving peer student communities with zero downtime.',
-    },
-  },
-  {
-    id: 4,
-    name: 'MTAP – Mobile Repair & Service Portal',
-    d: 'A modern service booking and diagnostic website for a tech repair business, featuring instant price estimates and repair request tracking.',
-    stack: ['HTML5', 'CSS3', 'JavaScript', 'Responsive UI'],
-    category: 'Commercial Business Website',
-    live: '',
-    github: 'https://github.com/Prashant100803',
-    caseStudy: {
-      problem: 'A local electronics repair shop suffered from inefficient phone-based scheduling and lost customer walk-ins due to lack of transparent repair pricing.',
-      solution: 'Designed and deployed an interactive service portal displaying transparent repair pricing for common smartphone and device issues with an inquiry form.',
-      features: [
-        'Device and issue selector with instant estimated repair turnaround time',
-        'Direct WhatsApp contact CTA for expedited customer support',
-        'Mobile-first responsive layout with fast 3G loading performance',
-      ],
-      outcomes: 'Modernized the shop’s local brand presence and automated common diagnostic inquiries.',
-    },
-  },
-  {
-    id: 5,
-    name: 'Event Management & Ticketing Interface',
-    d: 'An event discovery and booking portal where users can browse upcoming tech summits, workshops, and college fests with ticket reservations.',
-    stack: ['HTML5', 'Tailwind CSS', 'JavaScript'],
-    category: 'Interactive Web UI',
-    live: '',
-    github: 'https://github.com/Prashant100803',
-    caseStudy: {
-      problem: 'Traditional campus and community events suffered from chaotic RSVP forms and poor ticket confirmation tracking.',
-      solution: 'Crafted an engaging event portal with category filtering, schedule timelines, speaker highlights, and instant RSVP confirmation.',
-      features: [
-        'Dynamic event filtering by date, genre, and availability',
-        'Interactive speaker grid with detailed bio and session modal views',
-        'Calendar integration and ticket confirmation receipt card',
-      ],
-      outcomes: 'Delivered an intuitive ticketing experience with high user satisfaction during prototype trials.',
-    },
   },
 ]

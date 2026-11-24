@@ -8,8 +8,8 @@ export default function Portrait() {
   const [imgError, setImgError] = useState(false)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-  const rx = useTransform(y, [-0.5, 0.5], [12, -12])
-  const ry = useTransform(x, [-0.5, 0.5], [-12, 12])
+  const rx = useTransform(y, [-0.5, 0.5], [10, -10])
+  const ry = useTransform(x, [-0.5, 0.5], [-10, 10])
   const showPhoto = profile.photo && !imgError
   const initials = profile.name
     .split(' ')
@@ -17,11 +17,11 @@ export default function Portrait() {
     .join('')
 
   const chipBase =
-    'absolute px-3 py-1 text-xs font-semibold tracking-wide text-red-100 border border-red-500/30 bg-[#25080c]/80 shadow-[0_0_15px_rgba(239,68,68,0.3)] backdrop-blur-md rounded-full select-none'
+    'absolute px-3.5 py-1 text-xs font-mono font-semibold tracking-wider text-white border border-crimson/40 bg-[#161616]/90 shadow-[0_0_20px_rgba(220,38,38,0.35)] backdrop-blur-xl rounded-full select-none'
 
   return (
     <motion.div
-      className="relative mx-auto h-[330px] w-[270px] sm:h-[400px] sm:w-[320px] md:h-[440px] md:w-[350px] shrink-0"
+      className="relative mx-auto h-[350px] w-[280px] sm:h-[430px] sm:w-[340px] md:h-[480px] md:w-[380px] shrink-0"
       animate={reduce ? {} : { y: [0, -10, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
     >
@@ -30,7 +30,7 @@ export default function Portrait() {
         style={{
           rotateX: rx,
           rotateY: ry,
-          transformPerspective: 1000,
+          transformPerspective: 1100,
           transformStyle: 'preserve-3d',
         }}
         onPointerMove={e => {
@@ -43,97 +43,90 @@ export default function Portrait() {
           y.set(0)
         }}
       >
-        {/* Ambient Back Glow - Bold Red & Crimson Studio Lighting */}
+        {/* Ambient Crimson Rim Glow in 3D Depth */}
         <div
-          className="absolute -inset-4 rounded-[2.5rem] opacity-65 blur-2xl transition-opacity duration-500 group-hover:opacity-85 pointer-events-none"
+          className="absolute -inset-5 rounded-[2.8rem] opacity-75 blur-3xl transition-opacity duration-500 group-hover:opacity-95 pointer-events-none"
           style={{
-            background: 'conic-gradient(from 180deg at 50% 50%, #ef4444 0deg, #dc2626 90deg, #b91c1c 180deg, #f43f5e 270deg, #ef4444 360deg)',
-            transform: 'translateZ(-30px)',
+            background: 'radial-gradient(circle at 50% 40%, rgba(220,38,38,0.6) 0%, rgba(153,27,27,0.3) 50%, transparent 75%)',
+            transform: 'translateZ(-40px)',
           }}
         />
 
-        {/* Outer Tech Orbit Border with Red Neon Stroke */}
+        {/* 3D Concentric Crimson Tech Orbit Rings */}
         <motion.div
-          className="absolute -inset-3 rounded-[2.2rem] border border-dashed border-red-500/40 pointer-events-none shadow-[0_0_20px_rgba(239,68,68,0.25)]"
-          style={{ transform: 'translateZ(-10px)' }}
+          className="absolute -inset-4 rounded-[2.6rem] border border-dashed border-crimson/50 pointer-events-none shadow-[0_0_25px_rgba(220,38,38,0.3)]"
+          style={{ transform: 'translateZ(-15px)' }}
           animate={reduce ? {} : { rotate: 360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
         />
 
-        {/* Main Card Container */}
-        <div className="absolute inset-0 overflow-hidden rounded-[2rem] border border-red-500/30 bg-[#160608] shadow-2xl backdrop-blur-xl">
-          {/* Vivid Red Studio Background Backdrop */}
+        {/* Main Card Frame in Matte Black */}
+        <div className="absolute inset-0 overflow-hidden rounded-[2.2rem] border border-crimson/40 bg-[#050505] shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+          {/* Subtle Radial Crimson Studio Spotlight Behind Head */}
           <div
-            className="absolute inset-0 z-0 bg-gradient-to-tr from-[#7f1d1d] via-[#dc2626] to-[#ef4444]"
+            className="absolute inset-0 z-0 pointer-events-none opacity-80"
             style={{
-              background: 'radial-gradient(circle at 50% 30%, #ef4444 0%, #dc2626 35%, #991b1b 70%, #450a0a 100%)',
+              background: 'radial-gradient(circle at 50% 30%, rgba(220, 38, 38, 0.45) 0%, rgba(153, 27, 27, 0.2) 40%, transparent 70%)',
             }}
           />
 
           {showPhoto ? (
-            <>
-              {/* Photo with multiply blend against the deep red studio background */}
+            <div className="relative z-10 h-full w-full overflow-hidden">
               <img
                 src={profile.photo}
-                alt={`Portrait photo of ${profile.name}`}
-                className="relative z-10 h-full w-full object-cover object-top filter contrast-[1.08] brightness-[0.97]"
-                style={{
-                  mixBlendMode: 'multiply',
-                }}
+                alt={`Portrait photograph of ${profile.name}`}
+                className="h-full w-full object-cover object-top filter contrast-[1.05] brightness-[1.02] drop-shadow-[0_0_25px_rgba(220,38,38,0.25)]"
                 onError={() => setImgError(true)}
                 loading="eager"
               />
 
-              {/* Edge rim light & red vignette overlay */}
+              {/* Crimson Rim Light Vignette */}
               <div
                 className="pointer-events-none absolute inset-0 z-20"
                 style={{
-                  background: 'radial-gradient(circle at 50% 35%, transparent 45%, rgba(185, 28, 28, 0.4) 75%, rgba(69, 10, 10, 0.85) 100%)',
+                  background: 'linear-gradient(to top, #090909 0%, rgba(9,9,9,0.4) 15%, transparent 50%, rgba(220,38,38,0.1) 100%)',
                 }}
               />
-            </>
+            </div>
           ) : (
-            <div className="relative z-10 flex h-full w-full items-center justify-center bg-gradient-to-br from-red-900/80 to-rose-950 text-7xl font-extrabold text-white">
+            <div className="relative z-10 flex h-full w-full items-center justify-center bg-gradient-to-br from-[#181818] to-[#050505] text-7xl font-extrabold text-white">
               {initials}
             </div>
           )}
 
-          {/* Bottom Vignette for text legibility */}
-          <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-[#080B16] via-[#080B16]/30 to-transparent" />
-
-          {/* Bottom Card Identity Badge with Red Accent */}
-          <div className="absolute bottom-4 left-4 right-4 z-30 rounded-xl border border-red-500/30 bg-[#14080a]/85 p-3 backdrop-blur-md shadow-lg">
+          {/* Bottom Card Identity Badge */}
+          <div className="absolute bottom-4 left-4 right-4 z-30 rounded-2xl border border-white/10 bg-[#121212]/90 p-3.5 backdrop-blur-xl shadow-2xl">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-bold text-white tracking-wide">{profile.name}</p>
-                <p className="text-xs font-semibold text-red-400">{profile.title}</p>
+                <p className="text-sm font-bold font-display text-white tracking-wide">{profile.name}</p>
+                <p className="text-xs font-mono font-medium text-crimson-bright">{profile.role}</p>
               </div>
-              <div className="flex items-center gap-1.5 rounded-full bg-red-500/15 px-2.5 py-0.5 border border-red-500/30">
-                <span className="h-2 w-2 rounded-full bg-red-400 animate-pulse shadow-[0_0_8px_#ef4444]" />
-                <span className="text-[10px] font-bold text-red-200">Available</span>
+              <div className="flex items-center gap-1.5 rounded-full bg-crimson/15 px-2.5 py-0.5 border border-crimson/30">
+                <span className="h-2 w-2 rounded-full bg-crimson-bright animate-ping" />
+                <span className="text-[10px] font-mono font-bold text-white">ACTIVE</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Floating Skill Badges in 3D Space with Red Cyberpunk Theme */}
+        {/* Floating 3D Tech Badges in Depth */}
         <span
-          className={`${chipBase} -left-4 top-8 sm:-left-6`}
-          style={{ transform: 'translateZ(60px)' }}
+          className={`${chipBase} -left-4 top-10 sm:-left-6`}
+          style={{ transform: 'translateZ(70px)' }}
         >
-          ⚡ React.js
+          ⚡ React / Next.js
         </span>
         <span
-          className={`${chipBase} -right-4 top-28 sm:-right-6`}
-          style={{ transform: 'translateZ(75px)' }}
+          className={`${chipBase} -right-4 top-32 sm:-right-6`}
+          style={{ transform: 'translateZ(85px)' }}
         >
-          🚀 Node.js
+          🚀 Node / APIs
         </span>
         <span
           className={`${chipBase} -left-3 bottom-24 sm:-left-5`}
-          style={{ transform: 'translateZ(50px)' }}
+          style={{ transform: 'translateZ(65px)' }}
         >
-          🎨 Modern UI
+          🤖 AI / ML Systems
         </span>
       </motion.div>
     </motion.div>
