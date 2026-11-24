@@ -71,13 +71,13 @@ export default function Navbar() {
         {/* Brand Logo with Red Glow Pill */}
         <a
           href="#top"
-          className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-[#121212]/80 px-3.5 py-1.5 backdrop-blur-md hover:border-crimson/50 transition-all focus-visible:ring-2 focus-visible:ring-crimson"
+          className="group flex items-center gap-2 rounded-full border border-white/10 bg-[#121212]/80 px-3 py-1.5 backdrop-blur-md hover:border-crimson/50 transition-all focus-visible:ring-2 focus-visible:ring-crimson"
           aria-label="Prashant Yadav - Home"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-tr from-crimson to-crimson-bright text-xs font-black font-display text-white shadow-crimsonGlow group-hover:scale-105 transition-transform">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-tr from-crimson to-crimson-bright text-xs font-black font-display text-white shadow-crimsonGlow group-hover:scale-105 transition-transform shrink-0">
             PY
           </span>
-          <span className="font-display font-bold text-sm tracking-wide text-white group-hover:text-crimson-bright transition-colors">
+          <span className="font-display font-bold text-xs xs:text-sm tracking-wide text-white group-hover:text-crimson-bright transition-colors">
             Prashant<span className="text-crimson">.dev</span>
           </span>
         </a>

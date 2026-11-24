@@ -21,22 +21,22 @@ const Sec = ({ id, cam, badge, title, subtitle, children, className = '' }) => (
   <section
     id={id}
     data-cam={cam}
-    className={`relative mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-5 py-24 sm:py-32 ${className}`}
+    className={`relative mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-4 sm:px-6 lg:px-8 py-20 sm:py-32 ${className}`}
   >
     {(badge || title) && (
-      <div className="mb-14">
+      <div className="mb-10 sm:mb-14">
         {badge && (
-          <p className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-crimson-bright mb-2.5">
+          <p className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.25em] text-crimson-bright mb-2">
             // {badge}
           </p>
         )}
         {title && (
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-white">
+          <h2 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-white">
             <span className="gradient-red-white">{title}</span>
           </h2>
         )}
         {subtitle && (
-          <p className="mt-3.5 max-w-2xl text-base text-content-secondary leading-relaxed">
+          <p className="mt-2.5 sm:mt-3.5 max-w-2xl text-xs sm:text-base text-content-secondary leading-relaxed">
             {subtitle}
           </p>
         )}
@@ -69,7 +69,6 @@ function CustomCursor() {
 }
 
 export default function App() {
-  // Check if user has already seen intro this session
   const [showIntro, setShowIntro] = useState(() => {
     if (typeof window === 'undefined') return false
     return !sessionStorage.getItem('hasSeenBoxIntro')
@@ -86,25 +85,24 @@ export default function App() {
     setShowIntro(true)
   }
 
-  // 360-Degree Hero ScrollTrigger & Section Camera Rigging
+  // 360-Degree Hero ScrollTrigger (Adaptive for desktop & mobile)
   useEffect(() => {
+    const isMobile = window.innerWidth < 768
+
     const ctx = gsap.context(() => {
-      // 1. Hero 360-degree environment scroll rotation
       if (heroRef.current && !reduce) {
         ScrollTrigger.create({
           trigger: heroRef.current,
-          start: 'top top',
-          end: '+=150%',
-          pin: true,
+          start: isMobile ? 'top 20%' : 'top top',
+          end: isMobile ? '+=100%' : '+=150%',
+          pin: !isMobile, // Hard-pin only on desktop/tablet to prevent mobile viewport clipping
           scrub: 1,
           onUpdate: self => {
-            // Update 360 degree orbit progress (0 to 1 = full 360° environment spin)
             view.orbitProgress = self.progress
           },
         })
       }
 
-      // 2. Camera positional waypoints for other sections
       document.querySelectorAll('[data-cam]').forEach(el => {
         const [x, y, z] = el.dataset.cam.split(',').map(Number)
         ScrollTrigger.create({
@@ -131,21 +129,21 @@ export default function App() {
   }, [])
 
   return (
-    <div className="relative min-h-screen bg-[#090909] text-white selection:bg-crimson/40 selection:text-white">
+    <div className="relative min-h-screen bg-[#090909] text-white selection:bg-crimson/40 selection:text-white overflow-x-hidden">
       {/* 3D Animated Cartoon Box Fullscreen Intro */}
       <AnimatePresence>
         {showIntro && <BoxIntro onComplete={handleIntroComplete} />}
       </AnimatePresence>
 
-      {/* Floating Replay Intro Button */}
+      {/* Floating Replay Intro Button (Responsive position) */}
       {!showIntro && (
         <button
           onClick={handleReplayIntro}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border border-crimson/50 bg-[#121212]/90 px-4 py-2 text-xs font-mono font-semibold text-white shadow-[0_0_20px_rgba(220,38,38,0.35)] backdrop-blur-xl hover:scale-105 hover:border-crimson-bright transition-all focus-visible:ring-2 focus-visible:ring-crimson cursor-pointer"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-1.5 sm:gap-2 rounded-full border border-crimson/50 bg-[#121212]/95 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-mono font-semibold text-white shadow-[0_0_20px_rgba(220,38,38,0.35)] backdrop-blur-xl hover:scale-105 hover:border-crimson-bright transition-all focus-visible:ring-2 focus-visible:ring-crimson cursor-pointer"
           title="Replay 3D Box Introduction"
           aria-label="Replay 3D Box Introduction"
         >
-          <span className="h-2 w-2 rounded-full bg-crimson-bright animate-ping" />
+          <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-crimson-bright animate-ping" />
           <span>✨ Replay 3D Intro</span>
         </button>
       )}
@@ -160,24 +158,24 @@ export default function App() {
         </Suspense>
       </div>
 
-      <main className="relative z-10">
-        {/* STEP 5 & STEP 6: FULLSCREEN HERO WITH 360-DEGREE SCROLLING */}
+      <main className="relative z-10 overflow-x-hidden">
+        {/* HERO SECTION WITH 360-DEGREE SCROLL */}
         <div ref={heroRef} className="relative min-h-screen w-full flex items-center justify-center">
           <section
             id="top"
             data-cam="0,0,8"
-            className="relative mx-auto flex min-h-screen max-w-6xl w-full flex-col justify-center px-5 pt-28 pb-16 sm:py-32"
+            className="relative mx-auto flex min-h-screen max-w-6xl w-full flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:py-32"
           >
-            <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="grid gap-10 sm:gap-12 lg:grid-cols-12 lg:items-center">
               {/* Left Content (7 cols) */}
               <div className="lg:col-span-7 flex flex-col justify-center text-left">
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="inline-flex items-center gap-2 rounded-full border border-crimson/40 bg-crimson/15 px-3.5 py-1 text-xs font-mono font-bold text-white backdrop-blur-md mb-6 w-fit"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-crimson/40 bg-crimson/15 px-3 sm:px-3.5 py-1 text-[11px] sm:text-xs font-mono font-bold text-white backdrop-blur-md mb-4 sm:mb-6 w-fit"
                 >
-                  <span className="h-2 w-2 rounded-full bg-crimson-bright animate-ping" />
+                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-crimson-bright animate-ping" />
                   <span>{profile.greeting}</span>
                 </motion.div>
 
@@ -185,7 +183,7 @@ export default function App() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-4xl sm:text-6xl lg:text-7xl font-black font-display tracking-tight leading-[1.08] text-white"
+                  className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-black font-display tracking-tight leading-[1.08] text-white break-words"
                 >
                   {profile.role}
                 </motion.h1>
@@ -194,7 +192,7 @@ export default function App() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="mt-3 text-lg sm:text-2xl font-mono font-bold text-crimson-bright"
+                  className="mt-2.5 sm:mt-3 text-base sm:text-xl md:text-2xl font-mono font-bold text-crimson-bright"
                 >
                   {profile.subrole}
                 </motion.p>
@@ -203,26 +201,26 @@ export default function App() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="mt-4 text-base sm:text-lg text-content-secondary max-w-xl font-normal leading-relaxed"
+                  className="mt-3.5 sm:mt-4 text-sm sm:text-base md:text-lg text-content-secondary max-w-xl font-normal leading-relaxed"
                 >
                   "{profile.tagline}"
                 </motion.p>
 
-                {/* Buttons: Explore My Work & Let's Talk */}
+                {/* Buttons (Responsive layout: stacks on tiny phones, inline on xs+) */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="mt-8 flex flex-wrap items-center gap-4"
+                  className="mt-6 sm:mt-8 flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4"
                 >
-                  <a href="#projects" className="btn btn-crimson py-3.5 px-7 text-sm sm:text-base">
+                  <a href="#projects" className="btn btn-crimson py-3 sm:py-3.5 px-6 sm:px-7 text-xs sm:text-sm text-center justify-center">
                     <span>Explore My Work</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </a>
 
-                  <a href="#contact" className="btn btn-outline-red py-3.5 px-7 text-sm sm:text-base">
+                  <a href="#contact" className="btn btn-outline-red py-3 sm:py-3.5 px-6 sm:px-7 text-xs sm:text-sm text-center justify-center">
                     <span>Let's Talk</span>
                   </a>
                 </motion.div>
@@ -232,25 +230,25 @@ export default function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
-                  className="mt-8 flex items-center gap-3 text-xs font-mono text-content-dim"
+                  className="mt-6 sm:mt-8 flex items-center gap-2.5 text-[11px] sm:text-xs font-mono text-content-dim"
                 >
-                  <span className="flex h-2 w-2 relative">
+                  <span className="flex h-2 w-2 relative shrink-0">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson-bright" />
                   </span>
-                  <span>{profile.status}</span>
+                  <span className="truncate">{profile.status}</span>
                 </motion.div>
               </div>
 
               {/* Right Content: Fullscreen 3D Portrait (5 cols) */}
-              <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="lg:col-span-5 flex justify-center lg:justify-end mt-4 lg:mt-0">
                 <Portrait />
               </div>
             </div>
           </section>
         </div>
 
-        {/* STEP 7: REDESIGNED ABOUT ME */}
+        {/* ABOUT ME SECTION */}
         <Sec
           id="about"
           cam="0,-6,8"
@@ -258,20 +256,20 @@ export default function App() {
           title={profile.aboutHeading}
           subtitle="Engineering performant, human-centered digital products."
         >
-          <div className="grid gap-8 lg:grid-cols-12">
-            <div className="lg:col-span-7 glass-card-red p-6 sm:p-10 rounded-3xl border border-white/10">
-              <p className="text-base sm:text-lg text-white/90 leading-relaxed font-normal">
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-12">
+            <div className="lg:col-span-7 glass-card-red p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border border-white/10">
+              <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed font-normal">
                 {profile.about}
               </p>
-              <p className="mt-4 text-sm sm:text-base text-content-secondary leading-relaxed">
+              <p className="mt-3.5 sm:mt-4 text-xs sm:text-sm text-content-secondary leading-relaxed">
                 From responsive single-page applications and high-converting commercial platforms to interactive 3D WebGL scenes and AI-assisted automation, I blend clean software architecture with bold aesthetics.
               </p>
 
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <h4 className="text-xs uppercase font-mono font-bold tracking-widest text-crimson-bright mb-3">
+              <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
+                <h4 className="text-[11px] sm:text-xs uppercase font-mono font-bold tracking-widest text-crimson-bright mb-2.5 sm:mb-3">
                   Core Technical Focus
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {[
                     'Full-Stack Architecture',
                     'Interactive 3D / WebGL',
@@ -281,7 +279,7 @@ export default function App() {
                   ].map(item => (
                     <span
                       key={item}
-                      className="rounded-lg bg-white/[0.04] border border-white/[0.08] px-3 py-1.5 text-xs font-mono text-white/80"
+                      className="rounded-lg bg-white/[0.04] border border-white/[0.08] px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-mono text-white/80"
                     >
                       {item}
                     </span>
@@ -290,33 +288,33 @@ export default function App() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 flex flex-col justify-between gap-4">
-              <div className="glass-card-red p-6 rounded-2xl border border-white/10">
-                <h4 className="text-sm font-bold font-display text-white mb-2 flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-crimson-bright" />
+            <div className="lg:col-span-5 flex flex-col justify-between gap-3 sm:gap-4">
+              <div className="glass-card-red p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10">
+                <h4 className="text-xs sm:text-sm font-bold font-display text-white mb-1.5 flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-crimson-bright" />
                   Speed &amp; Production Reliability
                 </h4>
-                <p className="text-xs text-content-secondary leading-relaxed">
+                <p className="text-[11px] sm:text-xs text-content-secondary leading-relaxed">
                   Building modular code with React, Next.js, and Node ensures fast turnaround and effortless scalability.
                 </p>
               </div>
 
-              <div className="glass-card-red p-6 rounded-2xl border border-white/10">
-                <h4 className="text-sm font-bold font-display text-white mb-2 flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-crimson-bright" />
+              <div className="glass-card-red p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10">
+                <h4 className="text-xs sm:text-sm font-bold font-display text-white mb-1.5 flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-crimson-bright" />
                   Client &amp; Result Oriented
                 </h4>
-                <p className="text-xs text-content-secondary leading-relaxed">
+                <p className="text-[11px] sm:text-xs text-content-secondary leading-relaxed">
                   Every interaction and animation is purposeful, designed to maximize user engagement and business conversions.
                 </p>
               </div>
 
-              <div className="glass-card-red p-6 rounded-2xl border border-white/10">
-                <h4 className="text-sm font-bold font-display text-white mb-2 flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-crimson-bright" />
+              <div className="glass-card-red p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10">
+                <h4 className="text-xs sm:text-sm font-bold font-display text-white mb-1.5 flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-crimson-bright" />
                   Direct Collaboration
                 </h4>
-                <p className="text-xs text-content-secondary leading-relaxed">
+                <p className="text-[11px] sm:text-xs text-content-secondary leading-relaxed">
                   Transparent milestone communication, daily progress visibility, and post-launch support.
                 </p>
               </div>
@@ -324,7 +322,7 @@ export default function App() {
           </div>
         </Sec>
 
-        {/* STEP 8: SKILLS SECTION (2D Categorized Grid + AI/ML + 3D Universe) */}
+        {/* SKILLS SECTION */}
         <Sec
           id="skills"
           cam="0,-14,9"
@@ -335,7 +333,7 @@ export default function App() {
           <SkillsSection />
         </Sec>
 
-        {/* STEP 9: PROJECTS SECTION (3D Carousel + Grid) */}
+        {/* PROJECTS SECTION */}
         <Sec
           id="projects"
           cam="0,-24,10"
@@ -346,7 +344,7 @@ export default function App() {
           <Projects />
         </Sec>
 
-        {/* STEP 10: SERVICES SECTION */}
+        {/* SERVICES SECTION */}
         <Sec
           id="services"
           cam="0,-36,9"
@@ -357,7 +355,7 @@ export default function App() {
           <ServicesSection />
         </Sec>
 
-        {/* STEP 10: CONTACT SECTION */}
+        {/* CONTACT SECTION */}
         <Sec
           id="contact"
           cam="0,-48,9"
@@ -369,8 +367,8 @@ export default function App() {
         </Sec>
 
         {/* FOOTER */}
-        <footer className="border-t border-white/[0.08] bg-[#050505] py-10 px-5">
-          <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-content-dim">
+        <footer className="border-t border-white/[0.08] bg-[#050505] py-8 sm:py-10 px-4 sm:px-6">
+          <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-content-dim text-center sm:text-left">
             <div className="flex items-center gap-2">
               <span className="font-bold text-white tracking-wide">Prashant Yadav</span>
               <span>·</span>
